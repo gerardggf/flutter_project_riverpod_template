@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_template/app/core/constants/assets.dart';
+import 'package:riverpod_template/app/presentation/modules/profile/profile_view.dart';
+import 'package:riverpod_template/app/presentation/modules/sign-in/sign_in_view.dart';
 
 import '../../core/constants/colors.dart';
 import '../../core/generated/translations.g.dart';
@@ -29,6 +31,19 @@ mixin RoutesMixin on State<MyApp> {
         path: '/home',
         builder: (context, state) => const HomeView(),
       ),
+      GoRoute(
+        name: SignInView.routeName,
+        path: '/sign-in',
+        builder: (context, state) => const SignInView(),
+      ),
+      GoRoute(
+        name: ProfileView.routeName,
+        path: '/profile',
+        builder: (context, state) => const ProfileView(),
+      ),
     ],
+    // redirect: (context, state) {
+    //   return '/sign-in';
+    // },
   );
 }
