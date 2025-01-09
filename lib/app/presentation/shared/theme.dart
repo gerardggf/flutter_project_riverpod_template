@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod_template/app/core/extensions/theme_mode_extension.dart';
 import '../../core/constants/colors.dart';
 
 class AppTheme {
   static ThemeData getTheme(bool isDarkMode) =>
       isDarkMode ? darkTheme : lightTeme;
 
-  static final ThemeData lightTeme = ThemeData(
+  // Light theme  ---------------------------------------------------------------------------------------------
+
+  static final ThemeData lightTeme = ThemeData.light().copyWith(
     bottomSheetTheme:
         const BottomSheetThemeData(backgroundColor: AppColors.lightBg),
     drawerTheme: const DrawerThemeData(backgroundColor: AppColors.lightBg),
@@ -21,10 +22,11 @@ class AppTheme {
       ),
     ),
     textSelectionTheme: TextSelectionThemeData(
-      selectionColor: AppColors.lightSec.withAlpha(102),
-      selectionHandleColor: AppColors.lightSec,
-    ),
+        selectionColor: AppColors.light.withAlpha(102),
+        selectionHandleColor: AppColors.light,
+        cursorColor: AppColors.light),
     timePickerTheme: TimePickerThemeData(
+      entryModeIconColor: AppColors.lightSec,
       dialBackgroundColor: AppColors.light.withAlpha(102),
       dialHandColor: AppColors.light,
       hourMinuteColor: AppColors.light.withAlpha(102),
@@ -46,35 +48,76 @@ class AppTheme {
       ),
       backgroundColor: AppColors.lightBg,
     ),
-    datePickerTheme: const DatePickerThemeData(
-      cancelButtonStyle: ButtonStyle(
-        textStyle: WidgetStatePropertyAll(
-          TextStyle(
-            color: AppColors.lightSec,
-            fontWeight: FontWeight.bold,
-          ),
+    datePickerTheme: DatePickerThemeData(
+      todayBorder: const BorderSide(color: AppColors.light),
+      yearStyle: const TextStyle(color: AppColors.lightSec),
+      yearForegroundColor: WidgetStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.lightBg;
+        }
+        return AppColors.lightSec;
+      }),
+      dayForegroundColor: WidgetStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.lightBg;
+        }
+        return AppColors.lightSec;
+      }),
+      yearBackgroundColor: WidgetStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.light;
+        }
+        return AppColors.lightBg;
+      }),
+      todayBackgroundColor: WidgetStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.light;
+        }
+        return Colors.transparent;
+      }),
+      dayBackgroundColor: WidgetStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.light;
+        }
+        return Colors.transparent;
+      }),
+      cancelButtonStyle: TextButton.styleFrom(
+        textStyle: const TextStyle(
+          color: AppColors.lightSec,
+          fontWeight: FontWeight.bold,
         ),
       ),
-      confirmButtonStyle: ButtonStyle(
-        textStyle: WidgetStatePropertyAll(
-          TextStyle(
-            color: AppColors.lightSec,
-            fontWeight: FontWeight.bold,
-          ),
+      confirmButtonStyle: TextButton.styleFrom(
+        textStyle: const TextStyle(
+          color: AppColors.lightSec,
+          fontWeight: FontWeight.bold,
         ),
       ),
       backgroundColor: AppColors.lightBg,
+    ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: AppColors.light,
+      linearTrackColor: AppColors.light.withAlpha(90),
     ),
     dialogTheme: const DialogTheme(
       iconColor: AppColors.lightSec,
       contentTextStyle: TextStyle(color: AppColors.lightSec),
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.light,
+        foregroundColor: AppColors.lightBg,
+        textStyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
     dialogBackgroundColor: AppColors.lightBg,
     dropdownMenuTheme: DropdownMenuThemeData(
       textStyle: const TextStyle(color: AppColors.light),
       inputDecorationTheme: const InputDecorationTheme(
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.lightSec),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.light),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.lightSec),
@@ -93,15 +136,21 @@ class AppTheme {
         elevation: const WidgetStatePropertyAll(0),
       ),
     ),
+    popupMenuTheme: PopupMenuThemeData(
+      color: AppColors.lightBg,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       focusedBorder: const UnderlineInputBorder(
         borderSide: BorderSide(color: AppColors.light),
       ),
       labelStyle: TextStyle(
-        color: AppColors.lightSec.withAlpha(102),
+        color: AppColors.lightSec.withAlpha(140),
       ),
       hintStyle: TextStyle(
-        color: AppColors.lightSec.withAlpha(102),
+        color: AppColors.lightSec.withAlpha(140),
       ),
     ),
     iconTheme: const IconThemeData(color: AppColors.lightSec),
@@ -144,24 +193,28 @@ class AppTheme {
       thumbColor: WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.light;
+            return AppColors.lightBg;
           }
-          return AppColors.lightBg;
+          return AppColors.light;
         },
       ),
       trackOutlineColor: const WidgetStatePropertyAll(AppColors.light),
       trackColor: WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.lightBg;
+            return AppColors.light;
           }
-          return AppColors.light;
+          return AppColors.lightBg;
         },
       ),
     ),
   );
 
-  static final ThemeData darkTheme = ThemeData(
+  //----------------------------------------------------------------------------------------------------------
+
+  // Dark theme  ---------------------------------------------------------------------------------------------
+
+  static final ThemeData darkTheme = ThemeData.dark().copyWith(
     bottomSheetTheme:
         const BottomSheetThemeData(backgroundColor: AppColors.darkBg),
     drawerTheme: const DrawerThemeData(backgroundColor: AppColors.darkBg),
@@ -176,13 +229,23 @@ class AppTheme {
       ),
     ),
     textSelectionTheme: TextSelectionThemeData(
-      selectionColor: AppColors.darkSec.withAlpha(102),
-      selectionHandleColor: AppColors.darkSec,
+        selectionColor: AppColors.darkSec.withAlpha(102),
+        selectionHandleColor: AppColors.darkSec,
+        cursorColor: AppColors.darkSec),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.darkSec,
+        textStyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     ),
     timePickerTheme: TimePickerThemeData(
+      entryModeIconColor: AppColors.darkSec,
       dialBackgroundColor: AppColors.dark.withAlpha(102),
       dialHandColor: AppColors.dark,
       hourMinuteColor: AppColors.dark.withAlpha(102),
+      hourMinuteTextColor: AppColors.darkSec,
       cancelButtonStyle: const ButtonStyle(
         textStyle: WidgetStatePropertyAll(
           TextStyle(
@@ -191,6 +254,9 @@ class AppTheme {
           ),
         ),
       ),
+      dialTextColor: AppColors.darkSec,
+      helpTextStyle: const TextStyle(color: AppColors.darkSec),
+      dialTextStyle: const TextStyle(color: AppColors.darkSec),
       confirmButtonStyle: const ButtonStyle(
         textStyle: WidgetStatePropertyAll(
           TextStyle(
@@ -201,24 +267,73 @@ class AppTheme {
       ),
       backgroundColor: AppColors.darkBg,
     ),
-    datePickerTheme: const DatePickerThemeData(
-      cancelButtonStyle: ButtonStyle(
-        textStyle: WidgetStatePropertyAll(
-          TextStyle(
-            color: AppColors.darkSec,
-            fontWeight: FontWeight.bold,
-          ),
+    datePickerTheme: DatePickerThemeData(
+      yearOverlayColor: const WidgetStatePropertyAll(AppColors.darkSec),
+      yearStyle: const TextStyle(color: AppColors.darkSec),
+      yearForegroundColor: WidgetStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.dark;
+        }
+        return AppColors.darkSec;
+      }),
+      yearBackgroundColor: WidgetStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.darkSec;
+        }
+        return AppColors.darkBg;
+      }),
+      headerForegroundColor: AppColors.darkSec,
+      headerHelpStyle: const TextStyle(color: AppColors.darkSec),
+      headerHeadlineStyle: const TextStyle(color: AppColors.darkSec),
+      todayBorder: const BorderSide(color: AppColors.darkSec),
+      todayBackgroundColor: WidgetStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.darkSec;
+        }
+        return Colors.transparent;
+      }),
+      dayBackgroundColor: WidgetStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.darkSec;
+        }
+        return Colors.transparent;
+      }),
+      weekdayStyle: const TextStyle(
+        color: AppColors.darkSec,
+        fontWeight: FontWeight.bold,
+      ),
+      dayStyle: const TextStyle(color: AppColors.darkSec),
+      dayForegroundColor: WidgetStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.dark;
+        }
+        return AppColors.darkSec;
+      }),
+      todayForegroundColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.dark;
+        }
+        return AppColors.darkSec;
+      }),
+      cancelButtonStyle: TextButton.styleFrom(
+        textStyle: const TextStyle(
+          color: AppColors.darkSec,
+          fontWeight: FontWeight.bold,
         ),
       ),
-      confirmButtonStyle: ButtonStyle(
-        textStyle: WidgetStatePropertyAll(
-          TextStyle(
-            color: AppColors.darkSec,
-            fontWeight: FontWeight.bold,
-          ),
+      confirmButtonStyle: TextButton.styleFrom(
+        textStyle: const TextStyle(
+          color: AppColors.darkSec,
+          fontWeight: FontWeight.bold,
         ),
       ),
       backgroundColor: AppColors.darkBg,
+    ),
+    popupMenuTheme: PopupMenuThemeData(
+      color: AppColors.darkBg,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
     ),
     dialogTheme: const DialogTheme(
       iconColor: AppColors.darkSec,
@@ -226,16 +341,22 @@ class AppTheme {
     ),
     dialogBackgroundColor: AppColors.darkBg,
     dropdownMenuTheme: DropdownMenuThemeData(
-      textStyle: const TextStyle(color: AppColors.dark),
-      inputDecorationTheme: const InputDecorationTheme(
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.darkSec),
+      textStyle: const TextStyle(color: AppColors.darkSec),
+      inputDecorationTheme: InputDecorationTheme(
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.darkSec.withAlpha(140),
+          ),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.darkSec),
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.darkSec.withAlpha(140),
+          ),
         ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.darkSec),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.darkSec.withAlpha(140),
+          ),
         ),
       ),
       menuStyle: MenuStyle(
@@ -249,8 +370,20 @@ class AppTheme {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      focusedBorder: const UnderlineInputBorder(
-        borderSide: BorderSide(color: AppColors.dark),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.darkSec.withAlpha(140),
+        ),
+      ),
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.darkSec.withAlpha(140),
+        ),
+      ),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.darkSec.withAlpha(140),
+        ),
       ),
       labelStyle: TextStyle(
         color: AppColors.darkSec.withAlpha(102),
@@ -280,8 +413,9 @@ class AppTheme {
       headlineMedium: TextStyle(
           fontWeight: FontWeight.bold, fontSize: 20, color: AppColors.darkSec),
     ),
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.darkSec,
         foregroundColor: AppColors.dark,
         textStyle: const TextStyle(
           fontWeight: FontWeight.bold,
@@ -295,6 +429,11 @@ class AppTheme {
         color: AppColors.darkSec,
       ),
     ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: AppColors.darkSec,
+      circularTrackColor: AppColors.darkSec,
+      linearTrackColor: AppColors.darkSec.withAlpha(90),
+    ),
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.resolveWith(
         (states) {
@@ -304,11 +443,11 @@ class AppTheme {
           return AppColors.darkBg;
         },
       ),
-      trackOutlineColor: const WidgetStatePropertyAll(AppColors.light),
+      trackOutlineColor: const WidgetStatePropertyAll(AppColors.darkSec),
       trackColor: WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.darkBg;
+            return AppColors.darkSec;
           }
           return AppColors.dark;
         },

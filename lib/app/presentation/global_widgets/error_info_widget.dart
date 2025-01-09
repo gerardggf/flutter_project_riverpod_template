@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod_template/app/core/extensions/num_to_sizedbox.dart';
+import 'package:riverpod_template/app/core/utils/extensions/num_to_sizedbox.dart';
 import '../../core/generated/translations.g.dart';
 
 class ErrorInfoWidget extends StatelessWidget {

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_template/app/core/extensions/theme_mode_extension.dart';
+import 'package:riverpod_template/app/core/utils/extensions/theme_mode_extension.dart';
 import 'package:riverpod_template/app/presentation/shared/controllers/theme_controller.dart';
-import 'package:riverpod_template/app/presentation/shared/theme.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
@@ -40,7 +39,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                 decoration: InputDecoration(label: Text('helo')),
               ),
               Switch(
-                value: false,
+                value: true,
                 onChanged: (v) {},
               ),
               const LinearProgressIndicator(
@@ -70,6 +69,20 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   );
                 },
                 child: const Text('eeeeee'),
+              ),
+              DropdownButton(
+                value: 0,
+                items: const [
+                  DropdownMenuItem(
+                    value: 0,
+                    child: Text('0'),
+                  ),
+                  DropdownMenuItem(
+                    value: 1,
+                    child: Text('1'),
+                  )
+                ],
+                onChanged: (v) {},
               ),
             ],
           ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_template/app/core/extensions/num_to_sizedbox.dart';
-import 'package:riverpod_template/app/core/extensions/theme_mode_extension.dart';
+import 'package:riverpod_template/app/core/utils/extensions/num_to_sizedbox.dart';
+import 'package:riverpod_template/app/core/utils/extensions/theme_mode_extension.dart';
 import 'package:riverpod_template/app/presentation/modules/home/home_view.dart';
 
 import '../../../core/constants/assets.dart';
