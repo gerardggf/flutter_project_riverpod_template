@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_template/app/presentation/global_widgets/error_info_widget.dart';
+import 'package:riverpod_template/app/presentation/shared/widgets/error_info_widget.dart';
 
 import '../main.dart';
 import 'core/constants/global.dart';
 import 'core/generated/translations.g.dart';
-import 'presentation/global_widgets/loading_widget.dart';
+import 'presentation/shared/widgets/loading_widget.dart';
 import 'presentation/modules/splash/splash_view.dart';
 import 'presentation/routes/router.dart';
 import 'presentation/shared/controllers/theme_controller.dart';

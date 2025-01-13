@@ -8,7 +8,7 @@ import 'package:riverpod_template/app/presentation/modules/sign-in/sign_in_view.
 import '../../core/constants/colors.dart';
 import '../../core/generated/translations.g.dart';
 import '../../my_app.dart';
-import '../global_widgets/error_info_widget.dart';
+import '../shared/widgets/error_info_widget.dart';
 import '../modules/home/home_view.dart';
 import '../modules/splash/splash_view.dart';
 
