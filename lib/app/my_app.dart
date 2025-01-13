@@ -59,7 +59,7 @@ class MyApp extends ConsumerStatefulWidget {
   ConsumerState<MyApp> createState() => _TeamTrackAppState();
 }
 
-class _TeamTrackAppState extends ConsumerState<MyApp> with RoutesMixin {
+class _TeamTrackAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -69,7 +69,7 @@ class _TeamTrackAppState extends ConsumerState<MyApp> with RoutesMixin {
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.getTheme(ref.watch(themeControllerProvider).darkMode),
-      routerConfig: router,
+      routerConfig: ref.watch(goRouterProvider),
     );
   }
 }
