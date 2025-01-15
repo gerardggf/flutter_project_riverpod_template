@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_template/app/presentation/shared/controllers/session_controller.dart';
 
-import 'home_controller.dart';
-
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
 

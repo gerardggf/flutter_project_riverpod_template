@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project leverages the following packages and tools:
+This project uses the following packages and tools:
 - "flutter_slang" for managing translations
 - "go_router" for implementing Navigation 2.0
 - "freezed" for creating sealed and union classes
@@ -13,16 +13,16 @@ This project leverages the following packages and tools:
 
 To set up and run the project, follow these steps:
 1. Install dependencies
- - flutter pub get
+    - flutter pub get
 2. Generate code
-- flutter pub run build_runner build
-- flutter pub run slang
+    - flutter pub run build_runner build
+    - flutter pub run slang
 3. Run the application
-- flutter run
+    - flutter run
 
 ## Testing
 
 To execute integration tests, use the following command:
-- flutter drive --target=test_driver/app.dart
+    - flutter drive --target=test_driver/app.dart
 
 

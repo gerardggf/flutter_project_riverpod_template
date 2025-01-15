@@ -59,7 +59,6 @@ final goRouterProvider = Provider<GoRouter>(
           if (state.uri.toString() != '/splash') return '/splash';
           return null;
         }
-        print(userAuthState);
 
         if (userAuthState == null) {
           if (state.uri.toString() != '/sign-in') return '/sign-in';
