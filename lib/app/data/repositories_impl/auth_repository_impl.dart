@@ -11,6 +11,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   AsyncResult<UserModel> login(String email, String password) async {
     try {
+      //Not implemented
       return Either.right(
         UserModel(
           name: 'Test',
@@ -24,6 +25,18 @@ class AuthRepositoryImpl implements AuthRepository {
       return Either.left(
         Failure('Unknown error'),
       );
+    }
+  }
+
+  @override
+  Future<bool> logOut() async {
+    try {
+      //Not implemented
+      await Future.delayed(const Duration(seconds: 1));
+      return true;
+    } catch (e) {
+      if (kDebugMode) print(e.toString());
+      return false;
     }
   }
 }

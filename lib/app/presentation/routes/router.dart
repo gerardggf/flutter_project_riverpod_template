@@ -5,26 +5,21 @@ import 'package:riverpod_template/app/core/constants/assets.dart';
 import 'package:riverpod_template/app/domain/models/user_model.dart';
 import 'package:riverpod_template/app/presentation/modules/profile/profile_view.dart';
 import 'package:riverpod_template/app/presentation/modules/sign-in/sign_in_view.dart';
+import 'package:riverpod_template/app/presentation/shared/controllers/session_controller.dart';
 
 import '../../core/generated/translations.g.dart';
 import '../shared/widgets/error_info_widget.dart';
 import '../modules/home/home_view.dart';
 import '../modules/splash/splash_view.dart';
 
-final userStreamProvider = StreamProvider<UserModel?>((ref) {
-  return Stream.value(
-    UserModel(
-      name: '',
-      id: '',
-      email: '',
-      creationDate: DateTime.now(),
-    ),
-  );
+final userLoaderFutureProvider = FutureProvider<UserModel?>((ref) async {
+  return await ref.read(sessionControllerProvider.notifier).loadRemoteUser();
 });
 
 final goRouterProvider = Provider<GoRouter>(
   (ref) {
-    final userAuthState = ref.watch(userStreamProvider);
+    final userLoaderState = ref.watch(userLoaderFutureProvider);
+    final userAuthState = ref.watch(sessionControllerProvider);
     return GoRouter(
       errorBuilder: (context, state) => Scaffold(
         body: ErrorInfoWidget(
@@ -60,17 +55,20 @@ final goRouterProvider = Provider<GoRouter>(
         ),
       ],
       redirect: (context, state) {
-        if (userAuthState.isLoading) {
+        if (userLoaderState.isLoading) {
           if (state.uri.toString() != '/splash') return '/splash';
           return null;
         }
-        if (userAuthState.hasError || userAuthState.value == null) {
+        print(userAuthState);
+
+        if (userAuthState == null) {
           if (state.uri.toString() != '/sign-in') return '/sign-in';
           return null;
         }
-        if (userAuthState.value != null) {
-          if (state.uri.toString() != '/home') return '/home';
-          return null;
+
+        if (state.uri.toString() == '/sign-in' ||
+            state.uri.toString() == '/splash') {
+          return '/home';
         }
         return null;
       },

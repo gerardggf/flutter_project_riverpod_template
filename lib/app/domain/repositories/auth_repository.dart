@@ -9,4 +9,6 @@ final authRepoProvider = Provider<AuthRepository>(
 
 abstract class AuthRepository {
   AsyncResult<UserModel> login(String email, String password);
+
+  Future<bool> logOut();
 }

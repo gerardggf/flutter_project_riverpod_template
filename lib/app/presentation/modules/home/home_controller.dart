@@ -8,7 +8,9 @@ final homeControllerProvider = StateNotifierProvider<HomeController, HomeState>(
 );
 
 class HomeController extends StateNotifier<HomeState> {
-  HomeController(super.state);
+  HomeController(
+    super.state,
+  );
 
   void updateFetching(bool value) {
     state = state.copyWith(fetching: value);
