@@ -8,6 +8,7 @@ This project uses the following packages and tools:
 - "freezed" for creating sealed and union classes
 - "shared_preferences" for storing non-sensitive local data
 - "flutter_driver" for conducting integration testing
+- "flutter_launcher_icons" for generating platform icons
 
 ## Getting Started
 
@@ -24,5 +25,10 @@ To set up and run the project, follow these steps:
 
 To execute integration tests, use the following command:
     - flutter drive --target=test_driver/app.dart
+
+## Generate platform icons
+
+Run: 
+    - flutter pub run flutter_launcher_icons
 
 
