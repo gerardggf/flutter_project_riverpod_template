@@ -99,9 +99,10 @@ class AppTheme {
       color: AppColors.light,
       linearTrackColor: AppColors.light.withAlpha(90),
     ),
-    dialogTheme: const DialogTheme(
+    dialogTheme: const DialogThemeData(
       iconColor: AppColors.lightSec,
       contentTextStyle: TextStyle(color: AppColors.lightSec),
+      backgroundColor: AppColors.lightBg,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -112,7 +113,6 @@ class AppTheme {
         ),
       ),
     ),
-    dialogBackgroundColor: AppColors.lightBg,
     dropdownMenuTheme: DropdownMenuThemeData(
       textStyle: const TextStyle(color: AppColors.light),
       inputDecorationTheme: const InputDecorationTheme(
@@ -335,11 +335,11 @@ class AppTheme {
         borderRadius: BorderRadius.circular(10),
       ),
     ),
-    dialogTheme: const DialogTheme(
+    dialogTheme: const DialogThemeData(
       iconColor: AppColors.darkSec,
       contentTextStyle: TextStyle(color: AppColors.darkSec),
+      backgroundColor: AppColors.darkBg,
     ),
-    dialogBackgroundColor: AppColors.darkBg,
     dropdownMenuTheme: DropdownMenuThemeData(
       textStyle: const TextStyle(color: AppColors.darkSec),
       inputDecorationTheme: InputDecorationTheme(

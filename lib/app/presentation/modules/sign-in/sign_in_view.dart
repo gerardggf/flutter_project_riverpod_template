@@ -16,6 +16,7 @@ class SignInView extends ConsumerWidget {
       ),
       body: Center(
         child: ElevatedButton(
+          key: const Key('auth-button'),
           onPressed: () {
             notifier.signIn(
               'test@test.com',

@@ -23,7 +23,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
           onPressed: () {
             ref.read(sessionControllerProvider.notifier).logOut();
           },
-          child: const Text('Log out'),
+          child: const Text('Sign out'),
         ),
       ),
     );
