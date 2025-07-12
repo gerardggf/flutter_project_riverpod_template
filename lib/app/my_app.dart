@@ -7,7 +7,6 @@ import '../main.dart';
 import 'core/constants/global.dart';
 import 'core/generated/translations.g.dart';
 import 'presentation/shared/widgets/loading_widget.dart';
-import 'presentation/modules/splash/splash_view.dart';
 import 'presentation/routes/router.dart';
 import 'presentation/shared/controllers/theme_controller.dart';
 import 'presentation/shared/theme.dart';
@@ -19,22 +18,26 @@ class AppStartupWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appStartupState = ref.watch(appStartupProvider);
     return appStartupState.when(
-      data: (_) => const MyApp(),
-      error: (e, __) => SplashView(
-        error: e.toString(),
-      ),
-      loading: () => const LoadingWidget(),
-    );
+        data: (_) => const MyApp(),
+        error: (e, __) => AppStartupErrorWidget(error: e.toString()),
+        loading: () => const AppStartupLoadingWidget());
   }
 }
 
 class AppStartupErrorWidget extends StatelessWidget {
-  const AppStartupErrorWidget({super.key});
+  const AppStartupErrorWidget({
+    super.key,
+    required this.error,
+  });
+
+  final String error;
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: ErrorInfoWidget(),
+    return MaterialApp(
+      home: ErrorInfoWidget(
+        text: error,
+      ),
     );
   }
 }
